@@ -4,7 +4,7 @@
   "description": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
-    "preinstall": "typings i",
+    "postinstall": "typings i",
     "lint": "tslint src/**/*ts",
     "mocha": "mocha --require ts-node/register src/**/*-test.ts",
     "test": "npm run lint && npm run mocha",
