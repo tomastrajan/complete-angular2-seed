@@ -1,0 +1,45 @@
+{
+  "name": "complete-angular2-seed",
+  "version": "1.0.0",
+  "description": "1.0.0",
+  "main": "src/main.ts",
+  "scripts": {
+    "preinstall": "typings i",
+    "lint": "tslint src/**/*ts",
+    "mocha": "mocha --require ts-node/register src/**/*-test.ts",
+    "test": "npm run lint && npm run mocha",
+    "build": "webpack --verbose",
+    "ci": "npm t && npm run build"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "ts-loader": "^0.8.1",
+    "ts-node": "^0.5.5",
+    "tslint": "^3.4.0",
+    "typescript": "^1.8.2",
+    "typings": "^0.6.8",
+    "watch": "^0.17.1",
+    "webpack": "^2.1.0-beta.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomastrajan/complete-angular2-seed.git"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "webpack",
+    "mocha",
+    "testing",
+    "seed",
+    "enterprise",
+    "eslint",
+    "typescript"
+  ],
+  "author": "Tomas Trajan <tomas.trajan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomastrajan/complete-angular2-seed/issues"
+  },
+  "homepage": "https://github.com/tomastrajan/complete-angular2-seed#readme"
+}
