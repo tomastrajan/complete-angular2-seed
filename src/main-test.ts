@@ -1,11 +1,11 @@
-import * as assert from "assert";
+import * as assert from 'assert';
 
-import * as main from "./main";
+import * as main from './main';
 
-describe("main", () => {
+describe('main', () => {
 
 
-    it("runs", () => {
+    it('runs', () => {
         const result: number = main.main();
 
         assert.equal(result, 3);

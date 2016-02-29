@@ -4,14 +4,20 @@
   "description": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
+    "start": "webpack-dev-server --env.TARGET DEV",
     "postinstall": "typings i",
     "lint": "tslint src/**/*ts",
     "mocha": "mocha --require ts-node/register src/**/*-test.ts",
     "test": "npm run lint && npm run mocha",
-    "build": "webpack --verbose",
+    "build": "webpack --env.TARGET PROD",
     "ci": "npm t && npm run build"
   },
+  "dependencies": {
+    "lodash": "^4.5.1"
+  },
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.8",
+    "html-webpack-plugin": "^2.9.0",
     "mocha": "^2.4.5",
     "ts-loader": "^0.8.1",
     "ts-node": "^0.5.5",
@@ -19,7 +25,8 @@
     "typescript": "^1.8.2",
     "typings": "^0.6.8",
     "watch": "^0.17.1",
-    "webpack": "^2.1.0-beta.3"
+    "webpack": "^2.1.0-beta.4",
+    "webpack-dev-server": "^1.14"
   },
   "repository": {
     "type": "git",

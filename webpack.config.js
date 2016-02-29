@@ -1,47 +1,76 @@
-const webpack = require("webpack");
-const path = require("path");
+const path = require('path');
+const _ = require('lodash');
 
-module.exports = function(env) {
+const webpack = require('webpack');
 
-    return {
-        debug: false,
-        devtool: "source-map",
-        context: path.join(__dirname, "./src"),
-        entry: {
-            main: "./main.ts"
-        },
-        output: {
-            path: path.join(__dirname, "./build"),
-            filename: "bundle.js"
-        },
-        module: {
-            loaders: [
-                {
-                    test: /\.ts$/,
-                    loader: "ts",
-                    exclude: /node_modules|typings/,
-                    query: {
-                        compilerOptions: {
-                            "target": "es6",
-                            "module": "es2015"
-                        }
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const CONFIG_DEFAULT = {
+    context: path.join(__dirname, './src'),
+    entry: {
+        main: './main.ts'
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.ts$/,
+                loader: 'ts',
+                exclude: /node_modules|typings/,
+                query: {
+                    compilerOptions: {
+                        'target': 'es6',
+                        'module': 'es2015'
                     }
                 }
-            ]
+            }
+        ]
+    },
+    resolve: {
+        extensions: ['', '.ts'],
+        modules: [
+            path.resolve('./src'),
+            'node_modules'
+        ]
+    }
+};
+
+const CONFIG_TARGET = {
+    DEV: {
+        debug: true,
+        devtool: 'source-map',
+        output: {
+            path: path.join(__dirname, './dev'),
+            filename: '[name].js'
         },
-        resolve: {
-            extensions: ["", ".ts"],
-            modules: [
-                path.resolve("./src"),
-                "node_modules"
-            ]
+        module: {
+          loaders: [
+          ]
         },
         plugins: [
+            new HtmlWebpackPlugin(),
             new webpack.LoaderOptionsPlugin({
                 minimize: false,
+                debug: true
+            })
+        ]
+    },
+    PROD: {
+        output: {
+            path: path.join(__dirname, './prod'),
+            filename: '[name].[chunkhash].js'
+        },
+        plugins: [
+            new CleanWebpackPlugin(['dist']),
+            new webpack.LoaderOptionsPlugin({
+                minimize: true,
                 debug: false
             }),
             new webpack.optimize.UglifyJsPlugin()
         ]
     }
+};
+
+module.exports = function(env) {
+    return _.merge(CONFIG_DEFAULT, CONFIG_TARGET[env.TARGET || 'DEV'])
 };
