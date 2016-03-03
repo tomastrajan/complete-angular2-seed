@@ -2,7 +2,9 @@ language: node_js
 node_js:
   - "4.1"
 install:
-  - npm i -s
+  - npm
 script:
+after_script:
+  - npm i
   - npm run ci
   - bash ./.travis-deploy.sh
