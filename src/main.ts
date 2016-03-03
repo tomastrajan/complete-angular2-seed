@@ -1,7 +1,10 @@
-import { add } from './service';
+import "es6-shim";
+import "es6-promise";
+import "zone.js";
+import "rxjs";
+import "reflect-metadata";
 
-export function main(): number {
-    return add(1, 2);
-}
+import { bootstrap } from "angular2/platform/browser";
+import { AppComponent } from "./app-component";
 
-console.log(main());
+bootstrap(AppComponent);
