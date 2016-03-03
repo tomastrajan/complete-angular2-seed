@@ -10,7 +10,7 @@ import AppService from "./app-service";
     `,
     providers: [AppService]
 })
-export class AppComponent {
+export default class AppComponent {
 
     private name: String;
 

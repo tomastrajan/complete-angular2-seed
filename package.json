@@ -34,7 +34,7 @@
     "typings": "^0.6.8",
     "watch": "^0.17.1",
     "webpack": "^2.1.0-beta.4",
-    "webpack-dev-server": "^1.14"
+    "webpack-dev-server": "^2.0.0-beta"
   },
   "repository": {
     "type": "git",

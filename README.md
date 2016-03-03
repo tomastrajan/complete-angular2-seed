@@ -1,4 +1,6 @@
-# Complete Angular 2 Seed [![Build Status](https://travis-ci.org/tomastrajan/complete-angular2-seed.svg?branch=master)](https://travis-ci.org/tomastrajan/complete-angular2-seed)
+# Complete Angular 2 Seed by [@tomastrajan](https://twitter.com/tomastrajan) [![Build Status](https://travis-ci.org/tomastrajan/complete-angular2-seed.svg?branch=master)](https://travis-ci.org/tomastrajan/complete-angular2-seed)
+
+#### Disclaimer: Repository is currently work in progress
 
 Feature complete seed for Angular 2.0 applications with Typescript, Webpack build 
 and focus on code style, testing and production ready packaging
@@ -31,7 +33,7 @@ Feel free to add suggestions or drop me a line [@tomastrajan](https://twitter.co
 
 ### Dependencies
 
-- [x] add Angular2
+- [x] add Angular 2 and related dependencies
 - [ ] determine / add UI library
 
 ### Implementation
