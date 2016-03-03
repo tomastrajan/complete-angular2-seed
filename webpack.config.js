@@ -68,7 +68,10 @@ const CONFIG_TARGET = {
             filename: "[name].[chunkhash].js"
         },
         plugins: [
-            new CleanWebpackPlugin(["dist"]),
+            new CleanWebpackPlugin(["prod"]),
+            new HtmlWebpackPlugin({
+                template: "./index.html"
+            }),
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
                 debug: false
