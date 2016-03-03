@@ -3,6 +3,9 @@
 Feature complete seed for Angular 2.0 applications with Typescript, Webpack build 
 and focus on code style, testing and production ready packaging
 
+## Demo
+Check out [demo](http://tomastrajan.github.io/complete-angular2-seed) which contains latest build of this repository. 
+
 ## Features
 * [Treeshaking](http://www.2ality.com/2015/12/webpack-tree-shaking.html) - removing 
   of unused code based on static analysis enabled by ES2015 import / export syntax
@@ -28,7 +31,7 @@ Feel free to add suggestions or drop me a line [@tomastrajan](https://twitter.co
 
 ### Dependencies
 
-- [ ] add Angular2
+- [x] add Angular2
 - [ ] determine / add UI library
 
 ### Implementation
