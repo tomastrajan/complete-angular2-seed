@@ -41,7 +41,7 @@ export default class GithubComponent {
         this.query = new Control();
 
         this.query.valueChanges
-            .debounceTime(300)
+            .debounceTime(250)
             .filter((query: String) => query.length > 0)
             .switchMap((query: String) => this.githubService.getRepos(query))
             .subscribe(
@@ -51,7 +51,7 @@ export default class GithubComponent {
             );
 
         this.query.valueChanges
-            .debounceTime(300)
+            .debounceTime(250)
             .filter((query: String) => query.length === 0)
             .subscribe(() => { this.repos = []; });
     }
