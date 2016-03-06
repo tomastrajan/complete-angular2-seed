@@ -27,6 +27,12 @@ const CONFIG_DEFAULT = {
             }, {
                 test: /\.json/,
                 loader: "json"
+            }, {
+                test: /\.css/,
+                loaders: [
+                    "style",
+                    { loader: "css", query: { modules: false } }
+                ]
             }
         ]
     },
