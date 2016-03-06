@@ -9,7 +9,7 @@
     "ban": false,
     "class-name": true,
     "comment-format": [
-      true,
+      false,
       "check-space",
       "check-lowercase"
     ],
@@ -20,7 +20,7 @@
       true,
       "spaces"
     ],
-    "interface-name": true,
+    "interface-name": false,
     "jsdoc-format": true,
     "label-position": true,
     "label-undefined": true,
