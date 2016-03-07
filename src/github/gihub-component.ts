@@ -12,9 +12,8 @@ import RepositoryInfoComponent from "./repository-info-component";
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col m11">
-                        <input placeholder="Repository name" id="name" type="text" class="validate"
-                            [ngFormControl]="query">
-                        <label for="name">Search</label>
+                        <input id="name" type="text" class="validate" [ngFormControl]="query">
+                        <label for="name">Search repository</label>
                     </div>
                     <div class="col m1" *ngIf="repos.length">
                         <i class="material-icons" style="cursor: pointer; margin-top: 30px;"
