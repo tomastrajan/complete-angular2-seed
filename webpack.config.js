@@ -78,12 +78,14 @@ const CONFIG_TARGET = {
             new CleanWebpackPlugin(["prod"]),
             new HtmlWebpackPlugin({
                 template: "./index.html"
-            }),
-            new webpack.LoaderOptionsPlugin({
-                minimize: true,
-                debug: false
-            }),
-            new webpack.optimize.UglifyJsPlugin()
+            })
+            //,
+            //new webpack.LoaderOptionsPlugin({
+            //    minimize: true,
+            //    debug: false
+            //}),
+            //new webpack.optimize.DedupePlugin(),
+            //new webpack.optimize.UglifyJsPlugin()
         ]
     }
 };
