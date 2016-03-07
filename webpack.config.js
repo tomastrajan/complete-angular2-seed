@@ -71,7 +71,8 @@ const CONFIG_TARGET = {
     PROD: {
         output: {
             path: path.join(__dirname, "./prod"),
-            filename: "[name].[chunkhash].js"
+            filename: "[name].[chunkhash].js",
+            publicPath: "complete-angular2-seed/"
         },
         plugins: [
             new CleanWebpackPlugin(["prod"]),
