@@ -13,8 +13,6 @@ export default class GithubService {
     ) {}
 
     public getRepos(query: any): Observable<Repository> {
-        console.log(this.config.API_URL);
-        console.log(this.http.get(`${this.config.API_URL}search/repositories?q=${query}`));
         return this.http
             .get(`${this.config.API_URL}search/repositories?q=${query}`)
             .map((res: Response) => res.json())
