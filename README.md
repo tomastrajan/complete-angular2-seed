@@ -17,10 +17,9 @@ Check out [demo](http://tomastrajan.github.io/complete-angular2-seed) which cont
 * Typescript 1.8+
 * TSlint
 * Mocha
+* Mochify
 * Webpack 2
 * Travis CI
-
-This repo is work in progress
 
 Feel free to add suggestions or drop me a line [@tomastrajan](https://twitter.com/tomastrajan)
 
@@ -28,17 +27,20 @@ Feel free to add suggestions or drop me a line [@tomastrajan](https://twitter.co
 
 ### Build
 
-- [ ] `watch` mode for mocha - currently doesn't work (ts-node / mocha-loader)
-- [ ] `watch` mode for tslint - similar
+- [x] `watch` mode for mocha / mochify
+- [ ] integration tests with bootstrapped app and programmatic clicking
+- [ ] unit tests
+- [ ] Angular 2 / Webpack 2 ES6 support for treeshaking
+- [ ] Ugligy / Dedupe for prod build
 
 ### Dependencies
 
 - [x] add Angular 2 and related dependencies
-- [ ] determine / add UI library
+- [x] determine / add UI library -> Materialize.css
 
 ### Implementation
 
-- [ ] determine example implementation (eg: TODO app, github bowser, wikipedia browser ...)
-
+- [x] determine example implementation (eg: TODO app, github bowser, wikipedia browser ...)
+- [ ] expand on Github related implementation
 
 
