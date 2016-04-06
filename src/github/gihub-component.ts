@@ -15,7 +15,7 @@ import RepositoryInfoComponent from "./github-search-result-component";
                         <input id="name" type="text" class="validate" [ngFormControl]="query">
                         <label for="name">Search repository by name</label>
                     </div>
-                    <div class="col m1" *ngIf="repos.length">
+                    <div class="col m1" *ngIf="repos.length || notFound">
                         <i class="material-icons" style="cursor: pointer; margin-top: 30px;" (click)="reset()">
                             delete
                         </i>
@@ -23,6 +23,7 @@ import RepositoryInfoComponent from "./github-search-result-component";
                 </div>
             </form>
             <div class="row">
+                <p *ngIf="notFound" style="text-align: center">No repositories found</p>
                 <github-search-result *ngFor="#repo of repos" [repo]="repo"></github-search-result>
             </div>
         </div>
@@ -32,18 +33,20 @@ import RepositoryInfoComponent from "./github-search-result-component";
 })
 export default class GithubComponent {
 
-    private query: Control;
+    private query: Control = new Control();
     private repos: Repository[] = [];
+    private notFound: boolean = false;
 
     constructor(private githubService: GithubService) {
-        this.query = new Control();
-
         this.query.valueChanges
             .debounceTime(250)
             .filter((query: String) => query.length > 0)
             .switchMap((query: String) => this.githubService.getRepos(query))
             .subscribe(
-                (value: Repository[]) => { this.repos = value; },
+                (value: Repository[]) => {
+                    this.repos = value;
+                    this.notFound = !value.length;
+                },
                 (err: any) => console.log("Error:", err),
                 () => console.log("Done")
             );
@@ -51,7 +54,10 @@ export default class GithubComponent {
         this.query.valueChanges
             .debounceTime(250)
             .filter((query: String) => query.length === 0)
-            .subscribe(() => { this.repos = []; });
+            .subscribe(() => {
+                this.repos = [];
+                this.notFound = false;
+            });
     }
 
     public reset(): void {
