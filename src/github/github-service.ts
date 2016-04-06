@@ -16,10 +16,35 @@ export default class GithubService {
         return this.http
             .get(`${this.config.API_URL}search/repositories?q=${query}`)
             .map((res: Response) => res.json())
-            .map((data: any) => data.items.map(this.dtoToModel));
+            .map((data: any) => data.items
+                .map(this.dtoToModelRepository)
+                .sort(this.sortByStargazers)
+            );
     }
 
-    private dtoToModel(item: any): Repository {
+    public getContent(fullName: string): any {
+        return this.http
+            .get(`${this.config.API_URL}repos/${fullName}/contents/`)
+            .map((res: Response) => res.json())
+            .map((data: any) => data
+                .map(this.dtoToModelContent)
+                .sort(this.sortByType)
+            );
+    }
+
+    private sortByStargazers(a: Repository, b: Repository): number {
+        return a.stargazers < b.stargazers ? 1 : a.stargazers > b.stargazers ? -1 : 0;
+    }
+
+    private sortByType(a: ContentItem, b: ContentItem): number {
+        if (a.type !== b.type) {
+            return a.type === "file" ? 1 : -1;
+        } else {
+            return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+        }
+    }
+
+    private dtoToModelRepository(item: any): Repository {
         return {
             id: item.id,
             name: item.full_name,
@@ -41,6 +66,12 @@ export default class GithubService {
             }
         };
     }
+
+    /* tslint:disable:variable-name */
+    private dtoToModelContent({ name, path, type, download_url }: any): ContentItem {
+        return { name, path, type, downloadUrl: download_url };
+    }
+    /* tslint:enable:variable-name */
 
 }
 
@@ -65,4 +96,11 @@ export interface Owner {
 
     url: String;
     avatar: String;
+}
+
+export interface ContentItem {
+    name: string;
+    path: string;
+    type: string;
+    downloadUrl: string;
 }

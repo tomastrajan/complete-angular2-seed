@@ -2,3 +2,27 @@
     position: relative;
     top: 5px;
 }
+
+.router-link-active {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.avatar {
+    position: relative;
+    top: -8px;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}
+
+.item .material-icons {
+    position: relative;
+    top:6px;
+}
+
+.item.dir {
+    font-weight: bold;
+}
