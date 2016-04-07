@@ -26,3 +26,7 @@
 .item.dir {
     font-weight: bold;
 }
+
+pre {
+    font-size: 12px;
+}

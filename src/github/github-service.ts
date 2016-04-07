@@ -22,14 +22,27 @@ export default class GithubService {
             );
     }
 
-    public getContent(fullName: string): any {
+    public getContent(owner: string, repo: string): any {
         return this.http
-            .get(`${this.config.API_URL}repos/${fullName}/contents/`)
+            .get(`${this.config.API_URL}repos/${owner}/${repo}/contents/`)
             .map((res: Response) => res.json())
             .map((data: any) => data
                 .map(this.dtoToModelContent)
                 .sort(this.sortByType)
             );
+    }
+
+    public getContentItem(owner: string, repo: string, path: string): any {
+        return this.http
+            .get(`${this.config.API_URL}repos/${owner}/${repo}/contents/${path}`)
+            .map((res: Response) => res.json())
+            .map((data: any) => this.dtoToModelContent(data));
+    }
+
+    public getContentItemRaw(url: string): any {
+        return this.http
+            .get(url)
+            .map((res: Response) => res.text());
     }
 
     private sortByStargazers(a: Repository, b: Repository): number {
@@ -47,7 +60,7 @@ export default class GithubService {
     private dtoToModelRepository(item: any): Repository {
         return {
             id: item.id,
-            name: item.full_name,
+            name: item.full_name.split("/")[1],
             description: item.description,
 
             url: item.html_url,
@@ -69,7 +82,7 @@ export default class GithubService {
 
     /* tslint:disable:variable-name */
     private dtoToModelContent({ name, path, type, download_url }: any): ContentItem {
-        return { name, path, type, downloadUrl: download_url };
+        return { name, path, type, url: encodeURIComponent(download_url) };
     }
     /* tslint:enable:variable-name */
 
@@ -102,5 +115,5 @@ export interface ContentItem {
     name: string;
     path: string;
     type: string;
-    downloadUrl: string;
+    url: string;
 }

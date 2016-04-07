@@ -12,7 +12,7 @@ import { Repository } from "./github-service";
                     <div class="row">
                         <div class="col m7">
                             <a class="card-title red-text text-accent-4" 
-                                [routerLink]="['Repository', {name: repo.name}]">
+                                [routerLink]="['/Repository', { owner: repo.owner.name, repo: repo.name }, 'Content', { path: null }]">
                                 {{repo.name}}
                             </a>
                         </div>
@@ -41,8 +41,6 @@ import { Repository } from "./github-service";
 })
 export default class GithubSearchResultComponent {
 
-    /* tslint:disable:no-unused-variable */
-    @Input() private repo: Repository;
-    /* tslint:enable:no-unused-variable */
+    @Input() public repo: Repository;
 
 }

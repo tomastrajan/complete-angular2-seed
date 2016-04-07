@@ -1,9 +1,10 @@
 import { Component } from "angular2/core";
+import { COMMON_DIRECTIVES } from "angular2/common";
 import { ROUTER_DIRECTIVES, RouteConfig } from "angular2/router";
 
 import AboutComponent from "./about/about-component";
 import GithubComponent from "./github/gihub-component";
-import RepositoryComponent from "./github/repository-component";
+import RepositoryComponent from "./repository/repository-component";
 
 @Component({
     selector: "app",
@@ -25,26 +26,12 @@ import RepositoryComponent from "./github/repository-component";
             <router-outlet></router-outlet>
         </div>
     `,
-    directives: [ROUTER_DIRECTIVES]
+    directives: [COMMON_DIRECTIVES, ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-    {
-        path: "/github",
-        name: "Github",
-        component: GithubComponent,
-        useAsDefault: true
-    }, {
-        path: "/github/repo/:name",
-        name: "Repository",
-        component: RepositoryComponent
-    }, {
-        path: "/about",
-        name: "About",
-        component: AboutComponent
-    },
+    { path: "/about", name: "About", component: AboutComponent },
+    { path: "/github", name: "Github", component: GithubComponent, useAsDefault: true},
+    { path: "/github/:owner/:repo/...", name: "Repository", component: RepositoryComponent },
     { path: "/**", redirectTo: ["Github"] }
 ])
-export default class AppComponent {
-
-
-}
+export default class AppComponent {}

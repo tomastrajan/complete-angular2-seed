@@ -1,5 +1,5 @@
 import { Component } from "angular2/core";
-import { COMMON_DIRECTIVES, Control } from "angular2/common";
+import { Control } from "angular2/common";
 
 import GithubService, { Repository } from "./github-service";
 import RepositoryInfoComponent from "./github-search-result-component";
@@ -28,7 +28,7 @@ import RepositoryInfoComponent from "./github-search-result-component";
             </div>
         </div>
     `,
-    directives: [COMMON_DIRECTIVES, RepositoryInfoComponent],
+    directives: [RepositoryInfoComponent],
     providers: [GithubService]
 })
 export default class GithubComponent {
@@ -47,9 +47,7 @@ export default class GithubComponent {
                     this.repos = value;
                     this.notFound = !value.length;
                 },
-                (err: any) => console.log("Error:", err),
-                () => console.log("Done")
-            );
+                (err: any) => console.log("Error:", err));
 
         this.query.valueChanges
             .debounceTime(250)
