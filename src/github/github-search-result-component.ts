@@ -12,7 +12,7 @@ import { Repository } from "./github-service";
                     <div class="row">
                         <div class="col m7">
                             <a class="card-title red-text text-accent-4" 
-                                [routerLink]="['/Repository', { owner: repo.owner.name, repo: repo.name }, 'Content', { path: null }]">
+                                [routerLink]="['/Repository', { owner: repo.owner.name, repo: repo.name }]">
                                 {{repo.name}}
                             </a>
                         </div>

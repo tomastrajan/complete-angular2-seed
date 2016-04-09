@@ -41,7 +41,7 @@ export default class GithubComponent {
         this.query.valueChanges
             .debounceTime(250)
             .filter((query: String) => query.length > 0)
-            .switchMap((query: String) => this.githubService.getRepos(query))
+            .switchMap((query: String) => this.githubService.searchRepositories(query))
             .subscribe(
                 (value: Repository[]) => {
                     this.repos = value;

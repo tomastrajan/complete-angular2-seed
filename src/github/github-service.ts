@@ -12,7 +12,7 @@ export default class GithubService {
         private config: Config
     ) {}
 
-    public getRepos(query: any): Observable<Repository> {
+    public searchRepositories(query: any): Observable<Repository> {
         return this.http
             .get(`${this.config.API_URL}search/repositories?q=${query}`)
             .map((res: Response) => res.json())
@@ -22,24 +22,18 @@ export default class GithubService {
             );
     }
 
-    public getContent(owner: string, repo: string): any {
-        return this.http
-            .get(`${this.config.API_URL}repos/${owner}/${repo}/contents/`)
-            .map((res: Response) => res.json())
-            .map((data: any) => data
-                .map(this.dtoToModelContent)
-                .sort(this.sortByType)
-            );
-    }
-
-    public getContentItem(owner: string, repo: string, path: string): any {
+    public getContent(owner: string, repo: string, path: string = ""): any {
+        path = path === "null" ? "" : path;
+        console.log(path);
         return this.http
             .get(`${this.config.API_URL}repos/${owner}/${repo}/contents/${path}`)
             .map((res: Response) => res.json())
-            .map((data: any) => this.dtoToModelContent(data));
+            .map((data: any) => Array.isArray(data)
+                ? data.map(this.dtoToModelContent).sort(this.sortByType)
+                : this.dtoToModelContent(data));
     }
 
-    public getContentItemRaw(url: string): any {
+    public getContentRaw(url: string): any {
         return this.http
             .get(url)
             .map((res: Response) => res.text());
@@ -81,7 +75,8 @@ export default class GithubService {
     }
 
     /* tslint:disable:variable-name */
-    private dtoToModelContent({ name, path, type, download_url }: any): ContentItem {
+    private dtoToModelContent(data: any): ContentItem {
+        const { name, path, type, download_url }: any = data;
         return { name, path, type, url: encodeURIComponent(download_url) };
     }
     /* tslint:enable:variable-name */

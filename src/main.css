@@ -25,6 +25,7 @@
 
 .item.dir {
     font-weight: bold;
+    cursor: pointer;
 }
 
 pre {

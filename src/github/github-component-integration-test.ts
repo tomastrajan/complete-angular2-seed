@@ -32,19 +32,19 @@ describe("github-component", () => {
         ]);
         component = injector.get(GithubComponent);
         service = injector.get(GithubService);
-        sinon.spy(service, "getRepos");
+        sinon.spy(service, "searchRepositories");
     });
 
     afterEach(() => {
-        service.getRepos.restore();
+        service.searchRepositories.restore();
     });
 
     it("searches for repository", () => {
         component.query.updateValue("test");
 
         return setTimeout(() => {
-            sinon.assert.calledOnce(service.getRepos);
-            sinon.assert.calledWith(service.getRepos, "test");
+            sinon.assert.calledOnce(service.searchRepositories);
+            sinon.assert.calledWith(service.searchRepositories, "test");
         }, 300);
     });
 

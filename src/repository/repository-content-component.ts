@@ -33,10 +33,10 @@ export default class RepositoryContentComponent implements AfterViewChecked {
         this.path = params.get("path");
         if (this.path) {
             this.loading = true;
-            service.getContentItem(this.owner, this.repo, this.path)
+            service.getContent(this.owner, this.repo, decodeURIComponent(this.path))
                 .flatMap((item: ContentItem) => {
                     this.item = item;
-                    return service.getContentItemRaw(decodeURIComponent(item.url));
+                    return service.getContentRaw(decodeURIComponent(item.url));
                 })
                 .subscribe((raw: any) => {
                     this.raw = raw;
